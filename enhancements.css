@@ -1,0 +1,788 @@
+/* ============================================================
+   GRIT Learn v9.1 — Premium Enhancements (FIXED & UPGRADED)
+   Button animations · Page transitions · Hover effects · Colors
+   ============================================================ */
+
+/* ════════════════════════════════════════════════════════
+   GLOBAL AMBIENT BACKGROUND
+════════════════════════════════════════════════════════ */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(108,99,255,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 10% 80%, rgba(168,85,247,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(16,185,129,0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientShift 20s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(108,99,255,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 10% 80%, rgba(168,85,247,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(16,185,129,0.06) 0%, transparent 60%);
+}
+
+@keyframes ambientShift {
+  0%   { opacity: 1; }
+  100% { opacity: 0.7; transform: scale(1.04); }
+}
+
+/* ════════════════════════════════════════════════════════
+   SCREEN TRANSITIONS — PREMIUM PAGE ENTER
+════════════════════════════════════════════════════════ */
+
+.screen.active {
+  animation: screenEnterPremium 0.38s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+
+@keyframes screenEnterPremium {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.98); filter: blur(3px); }
+  55%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Smooth scroll fade top/bottom */
+.screen.active .content {
+  mask-image: linear-gradient(180deg, transparent 0%, black 2%, black 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 2%, black 97%, transparent 100%);
+}
+
+/* ════════════════════════════════════════════════════════
+   BOTTOM NAVIGATION — ENHANCED
+════════════════════════════════════════════════════════ */
+
+#bottomNav {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border-top: 1px solid var(--glass-border);
+  box-shadow:
+    0 -1px 0 rgba(255,255,255,0.12),
+    0 -8px 32px rgba(80,70,160,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] #bottomNav {
+  box-shadow:
+    0 -1px 0 rgba(139,92,246,0.16),
+    0 -8px 32px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(139,92,246,0.08);
+}
+
+/* Nav icon bounce on activate */
+.nav-item.active .nav-icon {
+  transform: translateY(-3px) scale(1.18);
+  filter: drop-shadow(0 4px 10px rgba(var(--accent-rgb), 0.5));
+  animation: navIconPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes navIconPop {
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-6px) scale(1.28); }
+  100% { transform: translateY(-3px) scale(1.18); }
+}
+
+/* Nav item tap */
+.nav-item:active { transform: scale(0.88); }
+
+/* Center quiz button */
+.nav-center-inner {
+  width: 54px; height: 54px; border-radius: 18px;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  box-shadow:
+    0 4px 20px rgba(108,99,255,0.45),
+    0 0 0 3px rgba(108,99,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.22);
+  position: relative; overflow: hidden;
+}
+
+.nav-center-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.08) 25%, transparent 50%);
+  animation: spin 3s linear infinite;
+}
+
+.nav-center-btn:active .nav-center-inner {
+  transform: scale(0.85) rotate(-8deg);
+  transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ════════════════════════════════════════════════════════
+   BUTTON ANIMATIONS — ALL BUTTONS
+════════════════════════════════════════════════════════ */
+
+/* Primary buttons */
+button, [onclick], .home-quick-btn, .ob-branch-card,
+.diff-btn, .mode-btn, .tab-btn, .exam-year-btn,
+.home-stat-chip, .home-bac-strip {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Quick action grid */
+.home-quick-btn {
+  position: relative; overflow: hidden;
+  transition:
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+.home-quick-btn:active {
+  transform: scale(0.88) translateY(2px);
+  box-shadow: none !important;
+}
+.home-quick-btn:active .home-quick-icon {
+  transform: scale(0.85) rotate(-8deg);
+}
+.home-quick-icon {
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* BAC strip */
+.home-bac-strip {
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
+}
+.home-bac-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: translateX(-100%);
+  animation: shimmerSlow 3s ease-in-out 2s infinite;
+}
+.home-bac-strip:active { transform: scale(0.97); }
+
+@keyframes shimmerSlow {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Stat chips */
+.home-stat-chip {
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
+}
+.home-stat-chip:active { transform: scale(0.92) translateY(1px); }
+
+/* Diff / Mode / Exam year buttons */
+.diff-btn, .mode-btn, .exam-year-btn {
+  transition:
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+  position: relative; overflow: hidden;
+}
+.diff-btn.active, .mode-btn.active, .exam-year-btn.active {
+  animation: selectionPop 0.32s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes selectionPop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.diff-btn:active, .mode-btn:active, .exam-year-btn:active {
+  transform: scale(0.92);
+}
+.diff-btn.active .diff-icon,
+.mode-btn.active .mode-icon {
+  animation: iconBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes iconBounce {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(1.35) rotate(-12deg); }
+  70%  { transform: scale(0.95) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Tab buttons (subject filter) */
+.tab-btn {
+  transition:
+    color 0.18s ease,
+    background 0.18s cubic-bezier(0.34,1.56,0.64,1),
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
+}
+.tab-btn:active { transform: scale(0.92); }
+.tab-btn.active {
+  animation: tabActivate 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes tabActivate {
+  0%   { transform: scale(0.95); }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Quiz start & exam start buttons */
+.quiz-start-btn, .exam-start-btn, .ob-cta-btn {
+  position: relative; overflow: hidden;
+  transition:
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+    box-shadow 0.18s ease;
+}
+.quiz-start-btn::after, .exam-start-btn::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  animation: shimmer 2s linear infinite;
+}
+.quiz-start-btn:active, .exam-start-btn:active, .ob-cta-btn:active {
+  transform: scale(0.96) translateY(1px);
+}
+
+/* Onboarding branch cards */
+.ob-branch-card {
+  transition:
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1),
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+.ob-branch-card:active { transform: scale(0.95); }
+.ob-branch-card.active {
+  animation: branchActivate 0.32s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes branchActivate {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Ripple effect */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(108,99,255,0.22);
+  transform: scale(0);
+  animation: rippleAnim 0.55s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ════════════════════════════════════════════════════════
+   HOVER EFFECTS (desktop / tablet)
+════════════════════════════════════════════════════════ */
+
+@media (hover: hover) {
+  .home-quick-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(108,99,255,0.18);
+  }
+  .diff-btn:hover, .mode-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .tab-btn:hover { background: var(--overlay-medium); }
+  .summ-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+    border-color: var(--accent);
+  }
+  .quiz-option-btn:not([disabled]):hover {
+    border-color: var(--accent) !important;
+    background: rgba(108,99,255,0.06) !important;
+    transform: translateX(-3px);
+  }
+  .home-stat-chip:hover { transform: translateY(-2px) scale(1.02); }
+  .home-bac-strip:hover { transform: scale(1.01); }
+}
+
+/* ════════════════════════════════════════════════════════
+   HOME HERO — ANIMATED ORBS
+════════════════════════════════════════════════════════ */
+
+.home-hero-orb-a { animation: orbDrift1 8s ease-in-out infinite; }
+.home-hero-orb-b { animation: orbDrift2 11s ease-in-out infinite reverse; }
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-12px, 8px) scale(1.08); }
+  66%       { transform: translate(8px, -6px) scale(0.96); }
+}
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(10px, -10px) scale(1.10); }
+  66%       { transform: translate(-8px, 6px) scale(0.94); }
+}
+
+/* BAC days counter subtle pulse */
+.home-bac-days {
+  animation: bacDaysPulse 3.5s ease-in-out infinite;
+}
+@keyframes bacDaysPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.15); }
+  50%       { text-shadow: 0 0 30px rgba(255,255,255,0.35); }
+}
+
+/* ════════════════════════════════════════════════════════
+   HOME SECTIONS — STAGGERED ENTRY
+════════════════════════════════════════════════════════ */
+
+.home-section { animation: sectionEntry 0.45s cubic-bezier(0.34,1.2,0.64,1) both; }
+.home-section:nth-child(1) { animation-delay: 0.04s; }
+.home-section:nth-child(2) { animation-delay: 0.10s; }
+.home-section:nth-child(3) { animation-delay: 0.16s; }
+.home-section:nth-child(4) { animation-delay: 0.22s; }
+.home-section:nth-child(5) { animation-delay: 0.28s; }
+
+.home-body > * { animation: sectionEntry 0.4s cubic-bezier(0.34,1.2,0.64,1) both; }
+.home-body > *:nth-child(1) { animation-delay: 0.06s; }
+.home-body > *:nth-child(2) { animation-delay: 0.12s; }
+.home-body > *:nth-child(3) { animation-delay: 0.18s; }
+.home-body > *:nth-child(4) { animation-delay: 0.24s; }
+.home-body > *:nth-child(5) { animation-delay: 0.30s; }
+
+@keyframes sectionEntry {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════════════════════
+   XP / LEVEL BARS — ANIMATED
+════════════════════════════════════════════════════════ */
+
+.home-xp-bar-fill, .points-lvl-fill {
+  transition: width 1s cubic-bezier(0.25,0.46,0.45,0.94);
+  position: relative; overflow: hidden;
+}
+.home-xp-bar-fill::after, .points-lvl-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* Progress bars shimmer */
+[class*="-fill"] { position: relative; overflow: hidden; }
+[class*="-fill"]::after {
+  content: '';
+  position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.30), transparent);
+  animation: shimmerBar 2.5s ease-in-out infinite;
+}
+@keyframes shimmerBar {
+  0%   { left: -60%; }
+  100% { left: 150%; }
+}
+
+/* Level badge entry */
+.level-badge {
+  animation: levelBadgeEntry 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+}
+@keyframes levelBadgeEntry {
+  0%   { transform: scale(0.6) rotate(-8deg); opacity: 0; }
+  60%  { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ════════════════════════════════════════════════════════
+   QUIZ — OPTION ANSWER ANIMATIONS
+════════════════════════════════════════════════════════ */
+
+.quiz-option-btn {
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
+}
+.quiz-option-btn:not([disabled]):active {
+  transform: scale(0.97) translateX(-2px);
+}
+
+/* Wrong answer shake */
+.quiz-option-wrong {
+  animation: shakeWrong 0.4s ease both;
+}
+@keyframes shakeWrong {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-7px); }
+  40%       { transform: translateX(7px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* Correct answer */
+.quiz-option-correct {
+  animation: bounceCorrect 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes bounceCorrect {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04) translateX(-3px); }
+  70%  { transform: scale(0.99); }
+  100% { transform: scale(1); }
+}
+
+/* Quiz score ring */
+.qr-ring-fill {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Quiz progress fill */
+.quiz-prog-fill {
+  transition: width 0.5s cubic-bezier(0.34,1.2,0.64,1);
+  position: relative; overflow: hidden;
+}
+.quiz-prog-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmer 2s linear infinite;
+}
+
+/* ════════════════════════════════════════════════════════
+   POMODORO — ENHANCED RING & TIMER
+════════════════════════════════════════════════════════ */
+
+.pomo-ring-wrap {
+  position: relative;
+}
+.pomo-ring-wrap::before {
+  content: '';
+  position: absolute; inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 70%);
+  animation: pomoPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pomoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(1.12); opacity: 1; }
+}
+
+.pomo-ctrl-main {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+  position: relative; overflow: hidden;
+}
+.pomo-ctrl-main:active { transform: scale(0.90) !important; }
+.pomo-ctrl-main::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+  pointer-events: none;
+}
+
+.pomo-ctrl-secondary {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.pomo-ctrl-secondary:active { transform: scale(0.85) rotate(-15deg); }
+
+.pomo-mode-tab {
+  transition: all 0.2s cubic-bezier(0.34,1.2,0.64,1);
+}
+.pomo-mode-tab:active { transform: scale(0.94); }
+.pomo-mode-tab.active {
+  animation: tabActivate 0.28s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+/* Timer running state */
+#pomoTime.running {
+  animation: timeRunPulse 2s ease-in-out infinite;
+}
+@keyframes timeRunPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+
+.pomo-ring-fill {
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* ════════════════════════════════════════════════════════
+   AI SCREEN — MESSAGE BUBBLES
+════════════════════════════════════════════════════════ */
+
+.ai-msg-ai  { animation: aiBubbleIn  0.4s cubic-bezier(0.34,1.2,0.64,1) both; }
+.ai-msg-user{ animation: userBubbleIn 0.3s cubic-bezier(0.34,1.2,0.64,1) both; }
+
+@keyframes aiBubbleIn {
+  0%   { opacity: 0; transform: translateX(-18px) scale(0.94); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes userBubbleIn {
+  0%   { opacity: 0; transform: translateX(18px) scale(0.94); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.ai-thinking-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  animation: thinkingDot 1.4s ease-in-out infinite;
+}
+.ai-thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes thinkingDot {
+  0%, 60%, 100% { transform: scale(1); opacity: 0.4; }
+  30%            { transform: scale(1.4); opacity: 1; }
+}
+
+.ai-prompt-chip {
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.18s ease;
+}
+.ai-prompt-chip:active { transform: scale(0.93); }
+
+/* ════════════════════════════════════════════════════════
+   TOAST — SLIDE IN FROM RIGHT
+════════════════════════════════════════════════════════ */
+
+.toast-item {
+  animation: toastSlide 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+.toast-item.removing {
+  animation: toastSlideOut 0.25s ease forwards;
+}
+@keyframes toastSlide {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes toastSlideOut {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(110%); opacity: 0; }
+}
+
+/* ════════════════════════════════════════════════════════
+   XP POPUP
+════════════════════════════════════════════════════════ */
+
+#xpPopup {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 8px 32px rgba(108,99,255,0.35),
+    0 0 0 1px rgba(255,255,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+/* ════════════════════════════════════════════════════════
+   LEVEL UP & BADGE POPUP
+════════════════════════════════════════════════════════ */
+
+.levelup-card {
+  position: relative; overflow: hidden;
+  animation: levelUpCardIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes levelUpCardIn {
+  0%   { transform: scale(0.7) translateY(30px); opacity: 0; }
+  60%  { transform: scale(1.04) translateY(-4px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.badge-popup-icon {
+  animation: badgeIconIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+  filter: drop-shadow(0 8px 24px rgba(245,158,11,0.5));
+}
+@keyframes badgeIconIn {
+  0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+  50%  { transform: scale(1.25) rotate(8deg); opacity: 1; }
+  75%  { transform: scale(0.94) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ════════════════════════════════════════════════════════
+   SUMMARIES & LESSON CARDS
+════════════════════════════════════════════════════════ */
+
+.summ-card {
+  position: relative; overflow: hidden;
+  transition:
+    transform 0.22s cubic-bezier(0.34,1.56,0.64,1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+.summ-card:active { transform: scale(0.96); }
+.summ-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 50px; height: 50px;
+  border-radius: 0 var(--radius) 0 50px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════
+   AZKAR — COUNTER BUTTON
+════════════════════════════════════════════════════════ */
+
+#zikrBtn:active { transform: scale(0.90) !important; }
+
+.bumped {
+  animation: bumpScale 0.3s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+@keyframes bumpScale {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.38); }
+  100% { transform: scale(1); }
+}
+
+/* ════════════════════════════════════════════════════════
+   PROFILE — AVATAR RING
+════════════════════════════════════════════════════════ */
+
+.profile-avatar-wrap {
+  position: relative;
+}
+.profile-avatar-wrap::before {
+  content: '';
+  position: absolute; inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--brand-primary) 0%, var(--brand-secondary) 33%,
+    var(--brand-accent) 66%, var(--brand-primary) 100%
+  );
+  animation: avatarRingSpin 4s linear infinite;
+  z-index: -1;
+}
+.profile-avatar-wrap::after {
+  content: '';
+  position: absolute; inset: -2px;
+  border-radius: 50%;
+  background: var(--surface);
+  z-index: -1;
+}
+@keyframes avatarRingSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════════════════════════════
+   STREAK CARD — FIRE BOTTOM BAR
+════════════════════════════════════════════════════════ */
+
+.home-streak-card {
+  position: relative; overflow: hidden;
+}
+.home-streak-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #ef4444, #f59e0b);
+  background-size: 200% 100%;
+  animation: fireBar 2s linear infinite;
+}
+@keyframes fireBar {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Motivational card pulse */
+.home-motiv-card {
+  animation: motivCardAnim 8s ease-in-out infinite;
+}
+@keyframes motivCardAnim {
+  0%, 100% { box-shadow: 0 2px 12px rgba(108,99,255,0.07); }
+  50%       { box-shadow: 0 4px 22px rgba(108,99,255,0.16); }
+}
+
+/* ════════════════════════════════════════════════════════
+   CONFIRM MODAL — SLIDE UP
+════════════════════════════════════════════════════════ */
+
+.confirm-sheet {
+  animation: confirmSheetUp 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes confirmSheetUp {
+  0%   { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════════════════════
+   INPUT FOCUS EFFECTS
+════════════════════════════════════════════════════════ */
+
+input:focus, textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15) !important;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+/* ════════════════════════════════════════════════════════
+   SESSION DOTS — POMODORO
+════════════════════════════════════════════════════════ */
+
+.pomo-session-dot.done {
+  animation: sessionDone 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes sessionDone {
+  0%   { transform: scale(0.5); }
+  60%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ════════════════════════════════════════════════════════
+   STUDY PLAN SECTIONS
+════════════════════════════════════════════════════════ */
+
+.sp-section {
+  animation: sectionEntry 0.5s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+.sp-section:nth-child(2) { animation-delay: 0.08s; }
+.sp-section:nth-child(3) { animation-delay: 0.16s; }
+.sp-section:nth-child(4) { animation-delay: 0.24s; }
+
+.sp-qa-btn {
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
+}
+.sp-qa-btn:active { transform: scale(0.93); }
+
+/* ════════════════════════════════════════════════════════
+   LEADERBOARD ROWS
+════════════════════════════════════════════════════════ */
+
+.lb-list-row {
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  animation: sectionEntry 0.4s cubic-bezier(0.34,1.2,0.64,1) both;
+}
+.lb-list-row:nth-child(1) { animation-delay: 0.04s; }
+.lb-list-row:nth-child(2) { animation-delay: 0.08s; }
+.lb-list-row:nth-child(3) { animation-delay: 0.12s; }
+.lb-list-row:nth-child(4) { animation-delay: 0.16s; }
+.lb-list-row:nth-child(5) { animation-delay: 0.20s; }
+.lb-list-row:active { transform: scale(0.98); }
+
+/* ════════════════════════════════════════════════════════
+   PERFORMANCE — GPU HINTS
+════════════════════════════════════════════════════════ */
+
+.home-hero, .nav-center-inner, #splashScreen,
+.levelup-card, .badge-popup-card, .home-bac-strip {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ════════════════════════════════════════════════════════
+   DARK MODE ENHANCEMENTS
+════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .home-quick-btn {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+[data-theme="dark"] .home-stat-chip {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ════════════════════════════════════════════════════════
+   REDUCE MOTION SUPPORT
+════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
